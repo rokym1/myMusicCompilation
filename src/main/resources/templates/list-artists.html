@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Artists List</title>
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm">
+			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ARTIST LIST</button>
+		</div>
+		<div class="col-sm">
+			<a th:href="@{/albums/list}" class="btn btn-primary btn-lg btn-block">
+				ALBUM LIST
+			</a>
+		</div>
+		<div class="col-sm">
+			<a th:href="@{/songs/list}" class="btn btn-primary btn-lg btn-block">
+				SONG LIST
+			</a>
+		</div>
+	</div>
+	<hr>
+	<form action="#" th:action="@{/logout}" class="form-inline" 
+			   method="POST">
+		<h6 style="display:inline;">User:</h6>
+		<h6 sec:authentication="name" style="margin-left: 5px; margin-right: 25px; display:inline;"></h6>
+		<input type="submit" value="Logout" class="btn btn-outline-primary mt-2" 
+				onclick="if (!(confirm('Are you sure you want to logout?'))) return false"/>
+	</form>
+	<hr>
+	<form th:action="@{/artists/search}" class="form-inline">
+		<a th:href="@{/artists/showFormForAddArtist}" class="btn btn-primary btn-sm mb-3">
+			Add Artist
+		</a>
+		<input class="form-control ml-5 mr-sm-2 mb-3" type="search" name="artistName" placeholder="Search by name"/>
+		<button class="btn btn-success mb-3" type="submit">Search</button>
+	</form>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Name</th>
+				<th>Details</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempArtist : ${artists}">
+			
+				<td th:text="${tempArtist.name}" />	
+				<td>
+					<a th:href="@{/artistDetails/showDetails(artistId=${tempArtist.id})}" 
+							class="btn btn-secondary btn-sm">
+					    Details
+					</a>
+					<a th:href="@{/artists/showAlbumList(artistId=${tempArtist.id})}"
+						class="btn btn-primary btn-sm">
+						Albums
+					</a>
+					<a th:href="@{/artists/showSongList(artistId=${tempArtist.id})}"
+						class="btn btn-success btn-sm">
+						Songs
+					</a>
+				</td>
+				<td>
+					<a th:href="@{/artists/showFormForUpdateArtist(artistId=${tempArtist.id})}"
+						class="btn btn-info btn-sm">
+						Update
+					</a>
+					<a th:href="@{/artists/delete(artistId=${tempArtist.id})}"
+						class="btn btn-info btn-danger"
+						onclick="if (!(confirm('Are you sure you want to delete this artist?'))) return false">
+						Delete
+					</a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+

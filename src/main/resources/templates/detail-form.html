@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Update Artist-Detail</title>
+</head>
+
+<body>
+	<div class="container">
+		<h3>Artist Detail</h3>
+		<hr>
+		<p class="h4 mb-4">Update Details</p>
+		<form action="#" th:action="@{/artistDetails/update}"
+						 th:object="${artistDetail}" method="post">
+			
+			<input type="hidden" th:field="*{id}">
+			<input type="text" th:field="*{webPage}" 
+					class="form-control mb-4 col-4" placeholder="Official web site">
+			<input type="text" th:field="*{facebook}" 
+					class="form-control mb-4 col-4" placeholder="Facebook">
+			<input type="text" th:field="*{instagram}" 
+					class="form-control mb-4 col-4" placeholder="Instagram">
+			<button type="submit" class="btn btn-info col-2">Update</button>	
+		</form>
+		<hr>
+		<a th:href="@{/artists/list}">Back to Artists List</a>
+	
+	</div>
+
+
+
+</body>
+
+
+</html>
