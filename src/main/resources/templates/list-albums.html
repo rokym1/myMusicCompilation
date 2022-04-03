@@ -16,6 +16,26 @@
 <body>
 
 <div class="container">
+	<hr>
+	<div class="row">
+		<div class="col-sm">
+			<button type="button" class="btn btn-outline-primary btn-lg btn-block" disabled>
+				USER: <h6 sec:authentication="name" style="display:inline;"></h6>
+			</button>
+		</div>
+		<div class="col-sm">
+			<form action="#" th:action="@{/logout}" method="POST">
+				<input type="submit" value="Logout" class="btn btn-outline-danger btn-lg btn-block" 
+				onclick="if (!(confirm('Are you sure you want to logout?'))) return false"/>
+			</form>
+		</div>
+		<div class="col-sm">
+			<a th:href="@{/compilations/list(userName=${#authentication.name})}" class="btn btn-outline-warning btn-lg btn-block">
+				MY COMPILATIONS
+			</a>
+		</div>
+	</div>
+	<hr>
 	<div class="row">
 		<div class="col-sm">
 			<a th:href="@{/artists/list}" class="btn btn-primary btn-lg btn-block">
@@ -32,15 +52,7 @@
 		</div>
 	</div>
 	<hr>
-	<form action="#" th:action="@{/logout}" class="form-inline" 
-			   method="POST">
-		<h6 style="display:inline;">User:</h6>
-		<h6 sec:authentication="name" style="margin-left: 5px; margin-right: 25px; display:inline;"></h6>
-		<input type="submit" value="Logout" class="btn btn-outline-primary mt-2" 
-				onclick="if (!(confirm('Are you sure you want to logout?'))) return false"/>
-	</form>
-	<hr>
-	 <form th:action="@{/albums/search}" class="form-inline">
+	<form th:action="@{/albums/search}" class="form-inline">
 		<a th:href="@{/albums/showFormForAddAlbum}" class="btn btn-primary btn-sm mb-3">
 			Add Album
 		</a>
@@ -53,7 +65,7 @@
 				<th>Title</th>
 				<th></th>
 				<th>Artist</th>
-				<th>Action</th>
+				<th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
 			</tr>
 		</thead>
 		
@@ -68,7 +80,7 @@
 					</a>
 				</td>	
 				<td th:text="${tempAlbum.artist.name}" />
-				<td>
+				<td sec:authorize="hasRole('ROLE_ADMIN')">
 					<a th:href="@{/albums/showFormForUpdateAlbum(albumId=${tempAlbum.id})}"
 						class="btn btn-info btn-sm">
 						Update

@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-	<title>Artists List</title>
+	<title>Albums List</title>
 </head>
 
 <body>
@@ -38,12 +38,12 @@
 	<hr>
 	<div class="row">
 		<div class="col-sm">
-			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ARTIST LIST</button>
+			<a th:href="@{/artists/list}" class="btn btn-primary btn-lg btn-block">
+				ARTIST LIST
+			</a>
 		</div>
 		<div class="col-sm">
-			<a th:href="@{/albums/list}" class="btn btn-primary btn-lg btn-block">
-				ALBUM LIST
-			</a>
+			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ALBUM LIST</button>
 		</div>
 		<div class="col-sm">
 			<a th:href="@{/songs/list}" class="btn btn-primary btn-lg btn-block">
@@ -52,59 +52,50 @@
 		</div>
 	</div>
 	<hr>
-	<form th:action="@{/artists/search}" class="form-inline">
-		<a th:href="@{/artists/showFormForAddArtist}" class="btn btn-primary btn-sm mb-3">
-			Add Artist
-		</a>
-		<input class="form-control ml-5 mr-sm-2 mb-3" type="search" name="artistName" placeholder="Search by name"/>
-		<button class="btn btn-success mb-3" type="submit">Search</button>
-	</form>
+		<h4 th:text="${song.title}" style="text-transform: uppercase"></h4>
+	<hr>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
-				<th>Name</th>
-				<th>Details</th>
-				<th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
+				<th>Title</th>
+				<th>Choose</th>
 			</tr>
 		</thead>
-		
 		<tbody>
-			<tr th:each="tempArtist : ${artists}">
-			
-				<td th:text="${tempArtist.name}" />	
+			<tr th:each="tempComp : ${compilations}">
+				<td th:text="${tempComp.title}"></td>
 				<td>
-					<a th:href="@{/artistDetails/showDetails(artistId=${tempArtist.id})}" 
-							class="btn btn-secondary btn-sm">
-					    Details
-					</a>
-					<a th:href="@{/artists/showAlbumList(artistId=${tempArtist.id})}"
+					<a th:href="@{/compilations/saveSongToComp(compId=${tempComp.id}, songId=${song.id})}"
 						class="btn btn-primary btn-sm">
-						Albums
-					</a>
-					<a th:href="@{/artists/showSongList(artistId=${tempArtist.id})}"
-						class="btn btn-success btn-sm">
-						Songs
-					</a>
-				</td>
-				<td sec:authorize="hasRole('ROLE_ADMIN')">
-					<a th:href="@{/artists/showFormForUpdateArtist(artistId=${tempArtist.id})}"
-						class="btn btn-info btn-sm">
-						Update
-					</a>
-					<a th:href="@{/artists/delete(artistId=${tempArtist.id})}"
-						class="btn btn-info btn-danger"
-						onclick="if (!(confirm('Are you sure you want to delete this artist?'))) return false">
-						Delete
+						Add
 					</a>
 				</td>
 			</tr>
-		</tbody>		
+		</tbody>
 	</table>
-	
 </div>
-	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
