@@ -17,38 +17,48 @@
 
 <div class="container">
 	<hr>
-	<div class="row">
-		<div class="col-sm">
-			<button type="button" class="btn btn-outline-primary btn-lg btn-block" disabled>
-				USER: <h6 sec:authentication="name" style="display:inline;"></h6>
-			</button>
+	<div th:fragment="header">
+		<div class="row">
+			<div class="col-sm">
+				<button type="button" class="btn btn-outline-primary btn-lg btn-block" disabled>
+					USER: <h6 sec:authentication="name" style="display:inline;"></h6>
+				</button>
+			</div>
+			<div class="col-sm">
+				<form action="#" th:action="@{/logout}" method="POST">
+					<input type="submit" value="Logout" class="btn btn-outline-danger btn-lg btn-block" 
+					onclick="if (!(confirm('Are you sure you want to logout?'))) return false"/>
+				</form>
+			</div>
+			<div sec:authorize="hasRole('ROLE_USER')" class="col-sm">
+				<a th:href="@{/compilations/list(userName=${#authentication.name})}" class="btn btn-outline-warning btn-lg btn-block">
+					MY COMPILATIONS
+				</a>
+			</div>
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="col-sm">
+				<a th:href="@{/compilations/listAll}" class="btn btn-outline-warning btn-lg btn-block">
+					COMPILATIONS
+				</a>
+			</div>
 		</div>
-		<div class="col-sm">
-			<form action="#" th:action="@{/logout}" method="POST">
-				<input type="submit" value="Logout" class="btn btn-outline-danger btn-lg btn-block" 
-				onclick="if (!(confirm('Are you sure you want to logout?'))) return false"/>
-			</form>
-		</div>
-		<div class="col-sm">
-			<a th:href="@{/compilations/list(userName=${#authentication.name})}" class="btn btn-outline-warning btn-lg btn-block">
-				MY COMPILATIONS
-			</a>
-		</div>
-	</div>
-	<hr>
-	<div class="row">
-		<div class="col-sm">
-			<button type="button" class="btn btn-success btn-lg btn-block" disabled>ARTIST LIST</button>
-		</div>
-		<div class="col-sm">
-			<a th:href="@{/albums/list}" class="btn btn-primary btn-lg btn-block">
-				ALBUM LIST
-			</a>
-		</div>
-		<div class="col-sm">
-			<a th:href="@{/songs/list}" class="btn btn-primary btn-lg btn-block">
-				SONG LIST
-			</a>
+		
+		<hr>
+		<div class="row">
+			<div class="col-sm">
+				<a th:href="@{/artists/list}" class="btn btn-primary btn-lg btn-block">
+					ARTIST LIST
+				</a>
+			</div>
+			<div class="col-sm">
+				<a th:href="@{/albums/list}" class="btn btn-primary btn-lg btn-block">
+					ALBUM LIST
+				</a>
+			</div>
+			<div class="col-sm">
+				<a th:href="@{/songs/list}" class="btn btn-primary btn-lg btn-block">
+					SONG LIST
+				</a>
+			</div>
 		</div>
 	</div>
 	<hr>

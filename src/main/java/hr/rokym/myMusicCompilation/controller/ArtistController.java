@@ -51,6 +51,13 @@ public class ArtistController {
 	@PostMapping("/save")
 	public String saveArtist(@ModelAttribute("artist") Artist artist) {
 		
+		Artist existArtist = artistService.findByName(artist.getName());
+		
+		if (existArtist != null) {
+			
+			return "artist-form";
+		}
+		
 	    if (artist.getId() == 0) {
 	    	
 	    	ArtistDetail newDetail = new ArtistDetail();

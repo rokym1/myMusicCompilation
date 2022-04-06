@@ -69,6 +69,12 @@ public class ArtistServiceImpl implements ArtistService {
 		
 		return results;
 	}
+
+	@Override
+	public Artist findByName(String name) {
+		
+		return artistRepository.findByName(name);
+	}
 }
 
 

@@ -15,4 +15,6 @@ public interface ArtistService {
 	public void deleteById(int theId);
 	
 	public List<Artist> searchBy(String name);
+	
+	public Artist findByName(String name);
 }

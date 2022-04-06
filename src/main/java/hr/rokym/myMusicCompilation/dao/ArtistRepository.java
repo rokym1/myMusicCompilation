@@ -11,5 +11,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Integer> {
 	public List<Artist> findAllByOrderByNameAsc();
 	
 	public List<Artist> findByNameContainsAllIgnoreCase(String name);
+	
+	public Artist findByName(String name);
 }
+
 

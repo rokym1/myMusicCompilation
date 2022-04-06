@@ -40,6 +40,16 @@ public class CompilationController {
 		return "list-myCompilations";
 	}
 	
+	@GetMapping("/listAll")
+	public String listAllCompilations(Model model) {
+		
+		List<Compilation> compilations = compilationService.findAll();
+		
+		model.addAttribute("compilations", compilations);
+		
+		return "list-myCompilations";
+	}
+	
 	@GetMapping("/showSongsOnComp")
 	public String showSongsOnComp(@RequestParam("compilationId") int compId, Model model) {
 		
