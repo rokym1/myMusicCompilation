@@ -4,11 +4,13 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -45,6 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/songs/save").hasRole("ADMIN")
 			.antMatchers("/songs/delete").hasRole("ADMIN")
 			.antMatchers("/songs/**").hasAnyRole("USER", "ADMIN")
+			.antMatchers("/compilations/list").hasRole("USER")
+			.antMatchers("/compilations/listAll").hasRole("ADMIN")
+			.antMatchers("/compilations/showSongOnComp").hasAnyRole("USER", "ADMIN")
+			.antMatchers("/compilations/remove").hasRole("USER")
+			.antMatchers("/compilations/addToCompilation").hasRole("USER")
+			.antMatchers("/compilations/saveSongToCompilation").hasRole("USER")
+			.antMatchers("/compilations/showFormForAddComp").hasRole("USER")
+			.antMatchers("/compilations/saveComp").hasRole("USER")
+			.antMatchers("/suggestions/addSuggestion").hasRole("USER")
+			.antMatchers("/suggestions/save").hasRole("USER")
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
@@ -56,7 +68,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.exceptionHandling().accessDeniedPage("/access-denied");
 	}
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 }
+
 
 
 
