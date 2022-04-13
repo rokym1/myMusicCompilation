@@ -29,7 +29,7 @@ CREATE TABLE `album` (
   PRIMARY KEY (`id`),
   KEY `FK_ARTIST_idx` (`artist_id`),
   CONSTRAINT `FK_ARTIST` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
-INSERT INTO `album` VALUES (1,'Violator',1),(2,'Music For The Masses',1),(3,'Under a Blood Red Sky',2),(4,'The Man-Machine',3),(12,'A Collection of Great Dance Songs',6),(13,'Non-Stop Erotic Cabaret',8),(14,'The Wedding Album',9),(28,'Eat to the Beat',5),(29,'New gold dream (81-82-83-84)',10),(30,'Upstairs at Eric\'s',7);
+INSERT INTO `album` VALUES (1,'Violator',1),(2,'Music For The Masses',1),(3,'Under a Blood Red Sky',2),(4,'The Man-Machine',3),(12,'A Collection of Great Dance Songs',6),(13,'Non-Stop Erotic Cabaret',8),(14,'The Wedding Album',9),(28,'Eat to the Beat',5),(29,'New gold dream (81-82-83-84)',10),(30,'Upstairs at Eric\'s',7),(33,'Mirko Album',35);
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `artist` (
   UNIQUE KEY `NAME_UNIQUE` (`name`),
   KEY `FK_DETAIL_idx` (`artist_detail_id`),
   CONSTRAINT `FK_DETAIL` FOREIGN KEY (`artist_detail_id`) REFERENCES `artist_detail` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `artist` (
 
 LOCK TABLES `artist` WRITE;
 /*!40000 ALTER TABLE `artist` DISABLE KEYS */;
-INSERT INTO `artist` VALUES (1,'Depeche Mode',1),(2,'U2',2),(3,'Kraftwerk',3),(5,'Blondie',4),(6,'Pink Floyd',5),(7,'Yazoo',6),(8,'Soft Cell',7),(9,'Duran Duran',8),(10,'Simple Minds',9);
+INSERT INTO `artist` VALUES (1,'Depeche Mode',1),(2,'U2',2),(3,'Kraftwerk',3),(5,'Blondie',4),(6,'Pink Floyd',5),(7,'Yazoo',6),(8,'Soft Cell',7),(9,'Duran Duran',8),(10,'Simple Minds',9),(35,'Mirko',36);
 /*!40000 ALTER TABLE `artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `artist_detail` (
   `facebook` varchar(128) DEFAULT NULL,
   `instagram` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `artist_detail` (
 
 LOCK TABLES `artist_detail` WRITE;
 /*!40000 ALTER TABLE `artist_detail` DISABLE KEYS */;
-INSERT INTO `artist_detail` VALUES (1,'http://www.depechemode.com/','https://www.facebook.com/depechemode','https://www.instagram.com/depechemode/'),(2,'https://www.u2.com/','https://www.facebook.com/u2','https://instagram.com/u2'),(3,'https://kraftwerk.com/','https://www.facebook.com/Kraftwerk','https://www.instagram.com/kraftwerkofficial/'),(4,'https://www.blondie.net/','https://blondie.lnk.to/Facebookwe','https://blondie.lnk.to/Instawe'),(5,'https://www.pinkfloyd.com/','https://www.facebook.com/pinkfloyd/','https://www.instagram.com/PinkFloyd/'),(6,'https://yazooinfo.com/','https://www.facebook.com/AlisonMoyet/','https://twitter.com/Alisonmoyetnews'),(7,'https://www.softcell.co.uk/','https://www.facebook.com/softcellband','http://instagram.com/softcellhq'),(8,'https://duranduran.com/','http://www.facebook.com/duranduran','https://www.instagram.com/duranduran/?hl=en'),(9,'https://www.simpleminds.com/','https://www.facebook.com/simpleminds','https://www.instagram.com/simplemindsmusic/');
+INSERT INTO `artist_detail` VALUES (1,'http://www.depechemode.com/','https://www.facebook.com/depechemode','https://www.instagram.com/depechemode/'),(2,'https://www.u2.com/','https://www.facebook.com/u2','https://instagram.com/u2'),(3,'https://kraftwerk.com/','https://www.facebook.com/Kraftwerk','https://www.instagram.com/kraftwerkofficial/'),(4,'https://www.blondie.net/','https://blondie.lnk.to/Facebookwe','https://blondie.lnk.to/Instawe'),(5,'https://www.pinkfloyd.com/','https://www.facebook.com/pinkfloyd/','https://www.instagram.com/PinkFloyd/'),(6,'https://yazooinfo.com/','https://www.facebook.com/AlisonMoyet/','https://twitter.com/Alisonmoyetnews'),(7,'https://www.softcell.co.uk/','https://www.facebook.com/softcellband','http://instagram.com/softcellhq'),(8,'https://duranduran.com/','http://www.facebook.com/duranduran','https://www.instagram.com/duranduran/?hl=en'),(9,'https://www.simpleminds.com/','https://www.facebook.com/simpleminds','https://www.instagram.com/simplemindsmusic/'),(31,NULL,NULL,NULL),(33,NULL,NULL,NULL),(36,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `artist_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,6 +122,82 @@ LOCK TABLES `artist_genre` WRITE;
 /*!40000 ALTER TABLE `artist_genre` DISABLE KEYS */;
 INSERT INTO `artist_genre` VALUES (1,1),(1,2),(1,5),(1,6),(2,1),(2,3),(2,4),(3,5),(3,6);
 /*!40000 ALTER TABLE `artist_genre` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `authorities`
+--
+
+DROP TABLE IF EXISTS `authorities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `authorities` (
+  `username` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `authority` varchar(50) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authorities`
+--
+
+LOCK TABLES `authorities` WRITE;
+/*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
+INSERT INTO `authorities` VALUES ('admin','ROLE_ADMIN'),('rokym','ROLE_USER'),('mirko','ROLE_USER'),('john','ROLE_USER');
+/*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compilation`
+--
+
+DROP TABLE IF EXISTS `compilation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compilation` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(50) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compilation`
+--
+
+LOCK TABLES `compilation` WRITE;
+/*!40000 ALTER TABLE `compilation` DISABLE KEYS */;
+INSERT INTO `compilation` VALUES (1,'rokym','My first compilation'),(2,'rokym','Best Compilation'),(3,'rokym','Testing Compilation');
+/*!40000 ALTER TABLE `compilation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compilation_song`
+--
+
+DROP TABLE IF EXISTS `compilation_song`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compilation_song` (
+  `compilation_id` int NOT NULL,
+  `song_id` int NOT NULL,
+  PRIMARY KEY (`compilation_id`,`song_id`),
+  KEY `FK_COMPILATION_idx` (`compilation_id`),
+  KEY `FK_SONG_10` (`song_id`),
+  CONSTRAINT `FK_COMPILATION` FOREIGN KEY (`compilation_id`) REFERENCES `compilation` (`id`),
+  CONSTRAINT `FK_SONG_10` FOREIGN KEY (`song_id`) REFERENCES `song` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compilation_song`
+--
+
+LOCK TABLES `compilation_song` WRITE;
+/*!40000 ALTER TABLE `compilation_song` DISABLE KEYS */;
+INSERT INTO `compilation_song` VALUES (1,7),(1,8),(1,18),(1,37),(1,58),(1,61),(2,16),(2,22),(2,45),(2,54),(2,55),(2,60),(2,61),(2,70),(2,72),(3,18),(3,33),(3,57),(3,59);
+/*!40000 ALTER TABLE `compilation_song` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -165,7 +241,7 @@ CREATE TABLE `song` (
   KEY `FK_ALBUM` (`album_id`),
   CONSTRAINT `FK_ALBUM` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`),
   CONSTRAINT `FK_ARTIST_2` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,6 +253,58 @@ LOCK TABLES `song` WRITE;
 INSERT INTO `song` VALUES (1,'The Model',3,4),(2,'Gloria',2,3),(3,'Sunday Bloody Sunday',2,3),(4,'Never Let Me Down Again',1,2),(5,'Behind the Wheel',1,2),(6,'World in My Eyes',1,1),(7,'Enjoy the Silence',1,1),(8,'Frustration',8,13),(9,'Tainted Love',8,13),(10,'Seedy Films',8,13),(11,'Youth',8,13),(12,'Sex Dwarf',8,13),(13,'Entertaine Me',8,13),(14,'Chips On My Shoulder',8,13),(15,'Bedsitter',8,13),(16,'Too Much Information',9,14),(17,'Ordinary World',9,14),(18,'Come Undone',9,14),(19,'Femme Fatale',9,14),(20,'Shelter',9,14),(21,'None of the Above',9,14),(22,'Sin of the City',9,14),(23,'Strangelove',1,2),(32,'Dreaming',5,28),(33,'The Hardest Part',5,28),(34,'Union City Blue',5,28),(35,'Shayla',5,28),(36,'Eat to the Beat',5,28),(37,'Atomic',5,28),(38,'Die Young Stay Pretty',5,28),(39,'Personal Jesus',1,1),(40,'Waiting for the Night',1,1),(41,'Policy of Truth',1,1),(42,'Clean',1,1),(43,'Sweetest Perfection',1,1),(44,'Halo',1,1),(45,'Little 15',1,2),(46,'I Want You Now',1,2),(47,'Nothing',1,2),(48,'The Things You Said',1,2),(49,'The Robots',3,4),(50,'Spacelab',3,4),(51,'Metropolis',3,4),(52,'The Model',3,4),(53,'Neon Lights',3,4),(54,'One of These Days',6,12),(55,'Money',6,12),(56,'Sheep',6,12),(57,'Shine On You Crazy Diamond',6,12),(58,'Wish You Were Here',6,12),(59,'Another Brick in the Wall',6,12),(60,'Someone Somewhere in Summertime',10,29),(61,'New Gold Dream (81-82-83-84)',10,29),(62,'Somebody Up There Likes You',10,29),(63,'Big Sleep',10,29),(64,'King Is White And In The Crowd',10,29),(65,'Hunter and the Hunted',10,29),(66,'Gloria',2,3),(67,'I Will Follow',2,3),(68,'Party Girl',2,3),(69,'New Year\'s Day',2,3),(70,'Don\'t Go',7,30),(71,'Too Pieces',7,30),(72,'Bad Connection',7,30),(73,'In My Room',7,30),(74,'Only You',7,30),(75,'Goodbye 70\'s',7,30),(76,'Winter Kills',7,30);
 /*!40000 ALTER TABLE `song` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `suggestion`
+--
+
+DROP TABLE IF EXISTS `suggestion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `suggestion` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `artist_name` varchar(128) DEFAULT NULL,
+  `song_title` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `suggestion`
+--
+
+LOCK TABLES `suggestion` WRITE;
+/*!40000 ALTER TABLE `suggestion` DISABLE KEYS */;
+INSERT INTO `suggestion` VALUES (1,'Joy Division','');
+/*!40000 ALTER TABLE `suggestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `username` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `password` char(68) CHARACTER SET latin1 NOT NULL,
+  `first_name` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `last_name` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('admin','$2a$10$25D.HAlOw7PN1F/AYCGGd.va3Y73tCEWKjX0e4zX9i8X1/wWEnCg6','Mirko','Ivancic','mirkoivancic.eu@gmail.com',1),('rokym','$2a$10$Fpzo3Vvjcsyu7jAZw71QLeDNglGxce6v1UfqpcGwTSrWF89vpLk7C','Mirko','Ivancic','mirkoivancic.eu@gmail.com',1),('mirko','$2a$10$l/UriPFhLqSH7epAex2cteqwG161dmucHJ6eydAhwBH4jv0jw.Pai','Mate','Ivancic','mateIvancic@gmail.com',1),('john','$2a$10$cLWEkHBnbIn4gvxpZkgnTOkXDlEiHlNcfni2KX/7O258MP88rfpHG','John','Johnson','john.johnson@gmail.com',1);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -187,5 +315,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-29 20:28:28
-
+-- Dump completed on 2022-04-13 20:04:40
