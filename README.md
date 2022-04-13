@@ -7,6 +7,8 @@ Download the mysql dump file from sql folder and execute in Mysql Workbench
 
 server.port=8585
 
+Spring Security login/logout:
+
 userName: admin, password: admin, role: ROLE_ADMIN
 
 userName: rokym, password: rokym, role: ROLE_USER
