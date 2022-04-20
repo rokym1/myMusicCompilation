@@ -1,5 +1,5 @@
 # Music Compilation
-Just a small app i made while learning Spring framework.
+Just a small app I made while learning Spring framework.
 
 Used Spring Boot & Thymeleaf.
 
